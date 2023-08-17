@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  * {
+    @apply capitalize outline-transparent box-border;
+  }
+  html {
+    @apply text-[80%] scroll-smooth h-[100vh];
+  }
+  @font-face {
+    font-family: "gg-sans-bold";
+    src: url("../../fonts/gg sans Bold.ttf");
+  }
+  body {
+    @apply h-full;
+    font-family: "gg-sans-bold";
+  }
+  #root {
+    @apply w-full h-full;
+  }
+  i {
+    @apply font-[900];
+  }
+  img {
+    @apply max-w-full;
+  }
+  li {
+    @apply list-none;
+  }
+  .server :is(svg, img) {
+    @apply pointer-events-none text-white text-2xl transition-all duration-main;
+  }
+  .wrapper {
+    @apply rounded-[50%] z-50 overflow-hidden hover:rounded-[30%] transition-all duration-main w-full h-full;
+  }
+  .wrapper img {
+    @apply w-full h-full object-cover;
+  }
+  .server svg:not(.friends) {
+    @apply text-main-green;
+  }
+  .server:has(svg:not(.friends)) {
+    @apply hover:bg-main-white-green;
+  }
+  .server:has(svg:not(.friends)):hover svg {
+    @apply text-white;
+  }
+  .server:is(.active, :has(.wrapper.active)) {
+    @apply rounded-[30%] transition-all duration-main relative;
+    animation: translateBottom 0.1s ease-in;
+  }
+  .server:is(.active, :has(.wrapper.active)):not(.friends) {
+    @apply bg-main-green;
+  }
+  .server:is(.active, :has(.wrapper.active)):not(.friends) svg {
+    @apply text-white;
+  }
+  .server:is(.active, :has(.wrapper.active)):has(.friends) {
+    @apply bg-main-blue;
+  }
+  .server:is(.active, :has(.wrapper.active)) .white-side {
+    @apply h-10;
+  }
+  .server:is(.active, :has(.wrapper.active)) .wrapper {
+    @apply rounded-[30%];
+  }
+  .server:hover::before {
+    display: inline-block;
+  }
+  .server:hover::after {
+    display: block;
+  }
+  .server::before {
+    content: attr(data-caption);
+    @apply hidden absolute  text-2xl text-white bg-black shadow-xl left-[5.3rem] whitespace-nowrap p-1.5 px-4 rounded-md;
+  }
+  .server::after {
+    content: "";
+    @apply hidden w-4 h-4 bg-black absolute -right-8 rotate-[45deg] -z-10;
+  }
+  .server:not(.active, :has(.wrapper.active)):hover .white-side {
+    @apply h-7;
+  }
+  @keyframes translateBottom {
+    0% {
+      translate: 0 0;
+    }
+    100% {
+      translate: 0 1.6px;
+    }
+  }
+}
